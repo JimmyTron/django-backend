@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     # Add in environment variables for the entire "build" job
     env:
+      DEBUG: "0"
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
       POSTGRES_USER: ${{ secrets.DB_USER }}
       POSTGRES_PASSWORD: ${{ secrets.DB_PASSWORD }}
@@ -59,7 +60,7 @@ jobs:
       - name: Run Tests
         # Step specific environment variables
         env:
-          DEBUG: "0"
+          
           DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
           DB_USERNAME: ${{ env.POSTGRES_USER }}
           DB_PASSWORD: ${{ env.POSTGRES_PASSWORD }}
@@ -67,7 +68,15 @@ jobs:
           DB_DATABASE: ${{ env.POSTGRES_DB }}
           DB_PORT: ${{ env.POSTGRES_PORT }}
         run: |
-          echo os.getenv('DJANGO_SECRET_KEY')
-          echo os.environ.get('DJANGO_SECRET_KEY')
-          python manage.py test
+          #Testing django-dotenv
+          echo os.getenv(SECRET_KEY)
+          #Testing Python-dotenv
+          echo os.environ.get(SECRET_KEY)
+          #testing workflow step env
+          echo SECRET_KEY
+          #Testing Github Secrets
+          echo secrets.SECRET_KEY
+          #testing workflow env
+          echo env.DJANGO_SECRET_KEY
+          #python manage.py test
       
