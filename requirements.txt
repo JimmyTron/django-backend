@@ -63,3 +63,4 @@ uritemplate==4.1.1
 urllib3==1.26.14
 zope.interface==5.5.2
 setuptools>=65.5.1 # not directly required, pinned by Snyk to avoid a vulnerability
+zipp>=3.19.1 # not directly required, pinned by Snyk to avoid a vulnerability
